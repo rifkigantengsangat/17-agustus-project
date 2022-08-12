@@ -5,26 +5,19 @@ import {db} from './Firebase'
 import {collection,addDoc,getDocs} from 'firebase/firestore'
 import Login from './Pages/Login'
 import Register from './Pages/Register/Register'
+import Dashboard from './Pages/Dashboard/Dashboard'
+import Home from './Pages/Home'
 function App() {
   const [data,setData] = useState([])
-const dataGet =async ()=>{
-  const query = await getDocs(collection(db,"pahlawans"))
-  query.forEach((q)=>{
-    setData([...data,q.data()])
 
-  })
 
-}
-console.log(data)
-useEffect(()=>{
-dataGet()
-
-},[])
   return (
   <>
   <Routes>
     <Route path="/" element={<Login/>}/>
     <Route path='/register' element={<Register/>}/>
+    <Route path='dashboard' element={<Dashboard/>}/>
+    <Route path='home' element={<Home/>}/>
   </Routes>
   </>
   )

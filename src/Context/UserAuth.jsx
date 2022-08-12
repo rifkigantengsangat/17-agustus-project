@@ -38,7 +38,6 @@ try {
     console.log(error)
 }
 }
-console.log(dataReg);
 const logout = async()=>{
 await signOut(auth)
 }
@@ -52,7 +51,7 @@ useEffect(()=>{
 },[])
 console.log(user)
 return (
-    <UserAuthContext.Provider value={{logout,user,setUser,register,signInWithGoogle,signInWithGithub}}>
+    <UserAuthContext.Provider value={{logout,user,setUser,register,signInWithGoogle,signInWithGithub,Login}}>
     {children}
     </UserAuthContext.Provider>
 )

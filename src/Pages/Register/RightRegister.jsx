@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import googleIcon from '../../Assets/google.svg'
 import GithubIcon from '../../Assets/GithubIcon.png'
 import {User} from '../../Context/UserAuth'
+import {Link} from 'react-router-dom'
 const RightRegister = () => {
     const {register,user,signInWithGoogle,signInWithGithub,logout} = User()
     const [form,setForm] = useState({
@@ -36,7 +37,7 @@ const RightRegister = () => {
         <h1 className='font-bold text-sm '>Already have an account ?</h1>
        </div>
        <div className='bg-gray-200 px-4 py-2 rounded-full'>
-        <h1 className='font-medium'>Sign In</h1>
+        <Link to='/' className='font-medium'>Sign In</Link>
        </div>
        </div>
        <div className='flex flex-col justify-center items-center mt-28'>
@@ -44,7 +45,7 @@ const RightRegister = () => {
             <h1 className='text-4xl'>Create your Free Account</h1>
           </div>
          <div className='mt-10 '>
-            <div className='bg-gray-200 w-96 h-12 flex justify-start items-center px-6 rounded-lg pointer' onClick={()=>loginGoogle()}>
+            <div className='shadow-lg bg-gray-200 w-96 h-12 flex justify-start items-center px-6 rounded-lg cursor-pointer' onClick={()=>loginGoogle()}>
                 <div className='mr-4'>
                     <img src={googleIcon}/>
                 </div>
@@ -53,7 +54,7 @@ const RightRegister = () => {
                 </div>
         
             </div>
-            <div className='mt-6 bg-gray-200 w-96 h-12 flex justify-start items-center px-6 rounded-lg' onClick={()=>loginGithub()}>
+            <div className='cursor-pointer shadow-lg mt-6 bg-gray-200 w-96 h-12 flex justify-start items-center px-6 rounded-lg' onClick={()=>loginGithub()}>
                 <div className='mr-4'>
                     <img src={GithubIcon} className='w-8'/>
                 </div>
@@ -91,7 +92,7 @@ const RightRegister = () => {
                 <input className='w-96 border-4 border-[#002B5B] px-2 py-2 rounded-xl' onChange={handleFormChange} name='password' />
             </div>
             <div className='mb-2 mt-6'>
-                <button className='bg-[#002b5b] block w-96 px-3 py-3 rounded-xl text-white font-bold text-md'>Register</button>
+                <button className='shadow-lg bg-[#002b5b] block w-96 px-3 py-3 rounded-xl text-white font-bold text-md'>Register</button>
             </div>
            </form>
            </div>
