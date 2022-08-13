@@ -49,7 +49,6 @@ useEffect(()=>{
     subs()
   }
 },[])
-console.log(user)
 return (
     <UserAuthContext.Provider value={{logout,user,setUser,register,signInWithGoogle,signInWithGithub,Login}}>
     {children}

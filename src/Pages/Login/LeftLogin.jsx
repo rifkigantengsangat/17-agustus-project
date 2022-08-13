@@ -19,11 +19,11 @@ const LeftLogin = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     Login(form.email,form.password)
-    navigate('/dashboard')
+    navigate('/home')
   }
   const loginGoogle = ()=>{
     signInWithGoogle()
-    navigate('/dashboard')
+    navigate('/home')
     
 }
 const loginGithub = ()=>{
