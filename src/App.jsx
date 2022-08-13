@@ -7,6 +7,7 @@ import Login from './Pages/Login'
 import Register from './Pages/Register/Register'
 import Dashboard from './Pages/Dashboard/Dashboard'
 import Home from './Pages/Home'
+import Question from './Pages/Question'
 function App() {
   const [data,setData] = useState([])
 
@@ -18,6 +19,7 @@ function App() {
     <Route path='/register' element={<Register/>}/>
     <Route path='dashboard' element={<Dashboard/>}/>
     <Route path='home' element={<Home/>}/>
+    <Route path='/question/:questionID' element={<Question/>}/>
   </Routes>
   </>
   )

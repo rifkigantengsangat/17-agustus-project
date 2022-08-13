@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import {MdOutlineDashboard,MdQuiz,MdOutlineLogout} from 'react-icons/md'
 import {AiOutlineSearch} from 'react-icons/ai'
 import {FaUserAlt} from 'react-icons/fa'
+import {Link} from 'react-router-dom'
 import Avatar from '../../Assets/man.png'
 const Home = () => {
     const [tokens,setTokens] = useState(null)
@@ -22,7 +23,11 @@ const Home = () => {
  console.log(user)
  const handleLogout = ()=>{
   logout()
+  navigate('/')
   Cookies.destroy()
+ }
+ const gotoQuestion = ( id) =>{
+  navigate(`/question/${id}`)
  }
  const replaceName = user?.email.split("@")
  const name = replaceName[0]
@@ -106,7 +111,7 @@ const Home = () => {
          </div>
          <div className='w-full bg-gray-200 h-full'>
           <h1 className='font-bold font-Montserrat text-center pt-4'>Matematika</h1>
-          <button className='block w-11/12 mx-auto px-4 py-2 shadow-md rounded-lg font-bold font-Montserrat mt-6 bg-white '>Lihat Soal</button>
+          <button className='block w-11/12 mx-auto px-4 py-2 shadow-md rounded-lg font-bold font-Montserrat mt-6 bg-white'id='matematika' onClick={(e)=>gotoQuestion(e.target.id)}>Lihat Soal</button>
          </div>
          </div>
 
@@ -116,7 +121,7 @@ const Home = () => {
           </div>
           <div className='w-full h-full bg-gray-200'>
           <h1 className='font-bold font-Montserrat text-center pt-4'>Bahasa Indonesia</h1>
-          <button className='block w-11/12 mx-auto px-4 py-2 shadow-md rounded-lg font-bold font-Montserrat mt-6 bg-white '>Lihat Soal</button>
+          <button className='block w-11/12 mx-auto px-4 py-2 shadow-md rounded-lg font-bold font-Montserrat mt-6 bg-white' id='bahasaIndonesia' onClick={(e)=>gotoQuestion(e.target.id)}>Lihat Soal</button>
           </div>
          </div>
          <div className='rounded-xl bg-white shadow-lg w-96 h-96 mr-10 overflow-hidden' >
@@ -125,7 +130,7 @@ const Home = () => {
           </div>
           <div className='w-full h-full bg-gray-200'>
           <h1 className='font-bold font-Montserrat text-center pt-4'>PPKN</h1>
-          <button className='block w-11/12 mx-auto px-4 py-2 shadow-md rounded-lg font-bold font-Montserrat mt-6 bg-white '>Lihat Soal</button>
+          <button className='block w-11/12 mx-auto px-4 py-2 shadow-md rounded-lg font-bold font-Montserrat mt-6 bg-white ' id='PPKN' onClick={(e)=>gotoQuestion(e.target.id)}>Lihat Soal</button>
           </div>
          </div>
         </div>
