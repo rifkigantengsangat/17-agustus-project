@@ -6,7 +6,6 @@ import {UserAuthContextProvider} from './Context/UserAuth'
 import {DataContextProvider} from './Context/Data' 
 import {BrowserRouter} from 'react-router-dom'
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <BrowserRouter>
    <UserAuthContextProvider>
     <DataContextProvider>
@@ -14,5 +13,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </DataContextProvider>
     </UserAuthContextProvider>
     </BrowserRouter>
-  </React.StrictMode>
 )

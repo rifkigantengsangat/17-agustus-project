@@ -5,7 +5,6 @@ import {Data} from '../../Context/Data'
 import { useNavigate } from 'react-router-dom'
 import {setDoc,collection,doc,addDoc} from 'firebase/firestore'
 import { db } from '../../Firebase'
-
 const Dashboard = () => {
   const [question,setQuestion] = useState({
     soal : '',
@@ -51,7 +50,6 @@ const Dashboard = () => {
     answer : question.answer
 
   }) 
-  console.log(response)
  }
   return (
     <div>

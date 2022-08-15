@@ -11,8 +11,7 @@ const githubProvider = new GithubAuthProvider()
 const register = async(email,password)=>{
     const response = await createUserWithEmailAndPassword(auth,email,password)
     const data = response.user
-    setDataReg(data)
-    console.log(dataReg)
+   
 }
 const Login =async(email,password)=>{
 const response = await signInWithEmailAndPassword(auth,email,password)

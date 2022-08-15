@@ -13,8 +13,6 @@ const Home = () => {
   const navigate = useNavigate()
   const {data} = Data()
   const {user,logout} = User()
- 
-
  useEffect(()=>{
   if(!user){
     navigate('/')

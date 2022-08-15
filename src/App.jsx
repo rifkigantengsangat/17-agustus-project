@@ -1,17 +1,12 @@
-import { useState,useEffect } from 'react'
 import {Routes,Route} from 'react-router-dom'
+import React from 'react'
 import './App.css'
-import {db} from './Firebase'
-import {collection,addDoc,getDocs} from 'firebase/firestore'
 import Login from './Pages/Login'
 import Register from './Pages/Register/Register'
 import Dashboard from './Pages/Dashboard/Dashboard'
 import Home from './Pages/Home'
 import Question from './Pages/Question'
 function App() {
-  const [data,setData] = useState([])
-
-
   return (
   <>
   <Routes>
@@ -24,5 +19,4 @@ function App() {
   </>
   )
 }
-
 export default App

@@ -30,8 +30,6 @@ const loginGithub = ()=>{
   sigInWithGithub()
 navigate('/dashboard')
 }
-
-  
   return (
     <div className='basis-1/2 bg-[#F5F5F5] '>
         <div className='flex justify-center items-center flex-col mt-10 h-5/6'>

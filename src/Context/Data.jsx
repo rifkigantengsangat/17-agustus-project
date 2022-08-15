@@ -1,26 +1,18 @@
 import {useContext,createContext,useState,useEffect} from 'react'
 import {db} from '../Firebase'
 import {collection,addDoc,getDocs} from 'firebase/firestore'
-
 const DataContext = createContext()
-
 export const DataContextProvider = ({children}) =>{
     const [data,setData] = useState([])
- const [name,setName] = useState("roflo")
-    const dataGet =async ()=>{
-        const query = await getDocs(collection(db,"pahlawans"))
-        query.forEach((q)=>{
-          setData([...data,q.data()])
-      
-        })
-      
-      }
-useEffect(() => {
-dataGet()
-}, [])
-
+ const dataGet =async (paramsId)=>{
+    const query = await getDocs(collection(db,paramsId))
+    query.forEach((q)=>{
+      const datas = q.data()
+      setData(arr => [...arr , datas]);
+    })
+  }
     return (
-        <DataContext.Provider value={{data,name}} >
+        <DataContext.Provider value={{data,dataGet}} >
             {children}
         </DataContext.Provider>
     )
