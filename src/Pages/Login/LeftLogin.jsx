@@ -2,7 +2,7 @@ import React,{useState,useEffect}from 'react'
 import googleIcon from  '../../Assets/google.svg'
 import GithubIcon from  '../../Assets/GithubIcon.png'
 import { User } from '../../Context/UserAuth'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 const LeftLogin = () => {
   const navigate = useNavigate()
   const {Login,signInWithGoogle,sigInWithGithub} = User()
@@ -83,6 +83,9 @@ navigate('/dashboard')
         
             </div>
            
+         </div>
+         <div className='w-full'>
+            <h1 className='font-Montserrat font-medium'>don't have an account yet? <Link to='/register' className='font-bold'>Register now</Link></h1>
          </div>
            </div>
         </div>

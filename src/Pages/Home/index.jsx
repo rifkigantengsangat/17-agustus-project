@@ -27,9 +27,7 @@ const Home = () => {
  const gotoQuestion = ( id) =>{
   navigate(`/question/${id}`)
  }
- const replaceName = user?.email.split("@")
- const name = replaceName[0]
- console.log(name)
+
   return (
     <div className='w-screen h-screen bg-[#F7F7F7] flex'>
      <div className='basis-[12%] bg-white shadow-lg'>
@@ -93,7 +91,7 @@ const Home = () => {
          <img src={Avatar}/>
         </div>
         <div className='ml-2'>
-          <h1 className='text-md font-bold font-Montserrat'>{name}</h1>
+          <h1 className='text-md font-bold font-Montserrat'>{user?.email}</h1>
         </div>
         </div>
         </div>
