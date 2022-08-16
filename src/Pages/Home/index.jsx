@@ -48,7 +48,7 @@ const Home = () => {
           <h1><MdOutlineDashboard/></h1>
         </div>
         <div className='ml-4'>
-          <h1 className='font-bold font-Montserrat text-sm'>Dashboard</h1>
+          <Link to='/history' className='font-bold font-Montserrat text-sm'>History</Link>
         </div>
        </div>
        <div className='flex justify-start px-10 items-center bg-gray-200 py-2 shadow-lg w-52 rounded-lg mx-auto my-4'>

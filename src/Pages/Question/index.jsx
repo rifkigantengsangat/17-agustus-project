@@ -5,7 +5,9 @@ import { User } from '../../Context/UserAuth'
 import {setDoc,collection,doc,addDoc} from 'firebase/firestore'
 import {Data} from '../../Context/Data'
 import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
 const Question = () => {
+  const navigate = useNavigate()
   const {user} = User();
 const {data,dataGet} = Data()
 const [nomor,setNomor] = useState(1)
@@ -94,11 +96,15 @@ const formatDate = date.toLocaleDateString('en-US');
       pelajaran : questionID,
       waktu : formatDate
     })
+       setTimeout(() => {
+        navigate('/home')
+       }, 2000);
   }
   const finishedQuestion =()=>{
  if(nextData === 5){
   setDisable(false)
  }
+
   }
 useEffect(() => {
 dataGet(questionID)
