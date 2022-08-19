@@ -1,5 +1,5 @@
 import React from 'react'
-import Log from  '../../Assets/log.jpg'
+import Log from  '../../Assets/Log.jpg'
 const RightLogin = () => {
   return (
     <div className='basis-1/2' style={{
