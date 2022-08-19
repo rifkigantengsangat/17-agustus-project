@@ -1,10 +1,11 @@
 import {useContext,createContext,useState,useEffect} from 'react'
 import {db} from '../Firebase'
-import {collection,addDoc,getDocs} from 'firebase/firestore'
+import {collection,addDoc,getDocs,doc,deleteDoc} from 'firebase/firestore'
 const DataContext = createContext()
 export const DataContextProvider = ({children}) =>{
     const [data,setData] = useState([])
     const [hasilNilai,setHasilNilai] = useState([])
+    const [nilaiUser,setNilaiUser] = useState([])
  const dataGet =async (paramsId)=>{
     const query = await getDocs(collection(db,paramsId))
     query.forEach((q)=>{
@@ -13,24 +14,23 @@ export const DataContextProvider = ({children}) =>{
     })
   }
   const spesificDataById =async (id) =>{
-
-    console.log(id)
+    let result = []
     const response = await getDocs(collection(db,"hasilQuiz"))
-    response.forEach((query) =>{
+     response.forEach((query) =>{
       const datas = query.data()
-      setHasilNilai((nilai)=>[...nilai,datas])
-      console.log( hasilNilai?.[1])
-      const filteredData = hasilNilai?.filter((datas)=> {
-   return datas?.idUser === id
-    })
-      console.log(filteredData)
+       if(datas?.idUser ===id){
+        result.push(datas)
+       }
+       return result
     }
     )
-    
-    
+    setNilaiUser(result)
+  }
+  const deleteDocument = (id)=>{
+    const res = await db.collection("hasil").doc(id).delete();
   }
     return (
-        <DataContext.Provider value={{data,dataGet,spesificDataById,hasilNilai}} >
+        <DataContext.Provider value={{data,dataGet,spesificDataById,hasilNilai,nilaiUser}} >
             {children}
         </DataContext.Provider>
     )

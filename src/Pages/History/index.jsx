@@ -1,18 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {User} from '../../Context/UserAuth'
 import {Data} from '../../Context/Data'
+import { useNavigate } from 'react-router-dom'
 const History = () => {
-    const {spesificDataById,hasilNilai} = Data();
+  const navigate = useNavigate()
+    const {spesificDataById,hasilNilai,nilaiUser} = Data();
      const {user} = User();
-     const uid = user.uid;
-
-     const button = ()=>{
-        spesificDataById(uid)
-     }
-   console.log(hasilNilai)
+  useEffect(()=>{
+    spesificDataById(user.uid)
+  },[user])
   return (
     <div>
-        <button onClick={()=>button()}>cari</button>
+      <button onClick={()=> navigate('/home')}>Back To Home</button>
+      {nilaiUser.length >1 ?nilaiUser?.map((e,index)=>{
+      return (
+        <div key={index}>
+          <h1>{e.pelajaran}</h1>
+          <h1>{e.email}</h1>
+        </div>
+      )
+      }) : <>Kosong Mang</>}
     </div>
   )
 }

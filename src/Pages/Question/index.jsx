@@ -52,8 +52,9 @@ const [poin,setPoin] = useState(0)
       
       Toast.fire({
         icon: 'success',
-        title: message
+        title: "Kamu Benar"
       })
+     
       setPoin((poin)=> poin + 10)
     }else{
       setMessage(`Anda Salah` )
@@ -71,10 +72,10 @@ const [poin,setPoin] = useState(0)
       
       Toast.fire({
         icon: 'error',
-        title: message
+        title: "kamu Salah"
       })
       setPoin((poin)=> poin ===0 ? poin = 0  : poin - 10)
-    
+     
        
     }
   }
@@ -109,7 +110,7 @@ const formatDate = date.toLocaleDateString('en-US');
 useEffect(() => {
 dataGet(questionID)
 finishedQuestion()
-}, [nextData,disable,message,finished])
+}, [nextData,disable,message,finished,questionID])
   return (
     
     <div className='w-full h-screen bg-gray-200 flex justify-center items-center flex-col'>

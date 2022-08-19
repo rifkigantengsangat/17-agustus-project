@@ -8,7 +8,7 @@ import { db } from '../../Firebase'
 const Dashboard = () => {
   const [question,setQuestion] = useState({
     soal : '',
-    question1: '',
+    question: '',
     question2: '',
     question3: '',
     question4: '',
@@ -41,9 +41,9 @@ const Dashboard = () => {
  }
  const handleSubmit = async(e)=>{
   e.preventDefault()
-  const response = await addDoc(collection(db,"pahlawans"),{
+  const response = await addDoc(collection(db,"bahasaIndonesia"),{
     soal : question.soal,
-    question1 : question.question1,
+    question : question.question,
     question2 : question.question2,
     question3 : question.question3,
     question4 : question.question4,
@@ -55,7 +55,7 @@ const Dashboard = () => {
     <div>
       <form onSubmit={handleSubmit}>  
           <input className='border-red-100 border-2' name='soal' onChange={handleChange} placeholder='Masukan Soal Anda'/>
-    <input className='border-red-100 border-2' name='question1' onChange={handleChange} placeholder='Masukan Option Answer Anda'/>
+    <input className='border-red-100 border-2' name='question' onChange={handleChange} placeholder='Masukan Option Answer Anda'/>
     <input className='border-red-100 border-2' name='question2' onChange={handleChange}/>
     <input  className='border-red-100 border-2' name='question3' onChange={handleChange}/>
     <input className='border-red-100 border-2'  name='question4' onChange={handleChange}/>
