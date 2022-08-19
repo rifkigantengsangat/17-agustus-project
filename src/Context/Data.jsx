@@ -26,9 +26,7 @@ export const DataContextProvider = ({children}) =>{
     )
     setNilaiUser(result)
   }
-  const deleteDocument = (id)=>{
-   await deleteDoc(doc(db,"hasilQuiz",id))
-  }
+ 
     return (
         <DataContext.Provider value={{data,dataGet,spesificDataById,hasilNilai,nilaiUser}} >
             {children}
