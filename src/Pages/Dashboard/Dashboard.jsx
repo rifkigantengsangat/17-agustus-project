@@ -1,68 +1,104 @@
 import React,{useState,useEffect} from 'react'
-import {User} from '../../Context/UserAuth'
-import Cookies from 'js-cookie'
 import {Data} from '../../Context/Data'
-import { useNavigate } from 'react-router-dom'
-import {setDoc,collection,doc,addDoc} from 'firebase/firestore'
-import { db } from '../../Firebase'
+import { Line,Doughnut } from 'react-chartjs-2';
+import Chart from 'chart.js/auto';
+import {
+  Chart as ChartJS,
+  registerables,
+} from "chart.js"
+
 const Dashboard = () => {
-  const [question,setQuestion] = useState({
-    soal : '',
-    question: '',
-    question2: '',
-    question3: '',
-    question4: '',
-    answer:''
-  })
-  const [tokens,setTokens] = useState(null)
-  const navigate = useNavigate()
-  const {data} = Data()
-  const {user,logout} = User()
-  const token = user.accessToken
-
- useEffect(()=>{
-   Cookies.set('token', token)
-
-  const getCookie = Cookies.get('token')
-  setTokens(getCookie)
-  if(tokens === null){
-  //  navigate('/')
-   }
- },[tokens])
- const handleLogout = ()=>{
-  logout()
-  Cookies.destroy()
- }
- const handleChange = (e)=>{
-   setQuestion({
-    ...question,
-    [e.target.name] : e.target.value
-   })
- }
- const handleSubmit = async(e)=>{
-  e.preventDefault()
-  const response = await addDoc(collection(db,"bahasaIndonesia"),{
-    soal : question.soal,
-    question : question.question,
-    question2 : question.question2,
-    question3 : question.question3,
-    question4 : question.question4,
-    answer : question.answer
-
-  }) 
- }
+  const {jumlahSubmit,getValueSubmit} = Data()
+  const data = {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    datasets: [
+      {
+        label: "Jumlah Submit",
+        data: [jumlahSubmit.length, 53, 85, 41, 44, 65],
+        fill: true,
+        backgroundColor: "rgba(75,192,192,0.2)",
+        borderColor: "rgba(75,192,192,1)"
+      },
+      {
+        label: "Second dataset",
+        data: [33, 25, 35, 51, 54, 76],
+        fill: false,
+        borderColor: "#742774"
+      }
+    ]
+  };
+  const datas = {
+    labels: ["Jumlah Submit", "Total Quiz", "III"],
+    datasets: [
+      {
+        data: [jumlahSubmit.length, 3,3],
+        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        borderWidth: 2
+      }
+    ]
+  };
+  useEffect(()=>{
+    getValueSubmit()
+  },[])
+ 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>  
-          <input className='border-red-100 border-2' name='soal' onChange={handleChange} placeholder='Masukan Soal Anda'/>
-    <input className='border-red-100 border-2' name='question' onChange={handleChange} placeholder='Masukan Option Answer Anda'/>
-    <input className='border-red-100 border-2' name='question2' onChange={handleChange}/>
-    <input  className='border-red-100 border-2' name='question3' onChange={handleChange}/>
-    <input className='border-red-100 border-2'  name='question4' onChange={handleChange}/>
-    <input  className='border-red-100 border-2' name='answer' onChange={handleChange}/>
-    <button type='submit'>tambah</button>
-    </form>
+    <div className='w-screen h-screen bg-[#F4F6FF] flex'>
+      <div className='basis-[10%] bg-white shadow-lg'>
+        <div className='mt-6'>
+          <h1 className='text-center font-bold font-Montserrat'>Dashboard</h1>
+        </div>
+        <div className='flex flex-col  items-center h-96 mt-20'>
+          <div className='w-4/5 mx-auto bg-[#F4F6FF] px-2 py-1 rounded-lg shadow-md text-center my-3'>
+          <h1>Ok</h1>         
+          </div>
+          <div className='w-4/5 mx-auto bg-[#F4F6FF] px-2 py-1 rounded-lg shadow-md text-center my-3'>
+          <h1>Ok</h1>         
+          </div>
+          <div className='w-4/5 mx-auto bg-[#F4F6FF] px-2 py-1 rounded-lg shadow-md text-center my-3'>
+          <h1>Ok</h1>         
+          </div>
+        </div>
+      </div>
+      <div className='basis-[70%] mx-12 '>
+        <div className='mt-6 w-full h-80'>
+        <div className='flex flex-row items-center justify-between w-full h-full '>
+          <div className='h-3/6 bg-white w-72 shadow-lg rounded-lg pl-4'>
+          <div className='h-3/6 pt-14'>
+          <h1 className='font-bold font-Montserrat'>Jumlah Submit</h1>
+          </div>
+          <div className='h-3/6'>
+          <h1>{jumlahSubmit.length}</h1>
+          </div>
+          </div>
+          <div className='h-3/6 bg-white w-72 shadow-lg rounded-lg pl-4'>
+          <div className='h-3/6 pt-14'>
+          <h1 className='font-bold font-Montserrat'>Jumlah Quiz</h1>
+          </div>
+          <div className='h-3/6'>
+          <h1>3</h1>
+          </div>
+          </div>
+          <div className='h-3/6 bg-white w-72 shadow-lg rounded-lg'>
+           
+          </div>
+          <div className='h-3/6 bg-white w-72 shadow-lg rounded-lg'>
 
+          </div>
+        </div>
+        </div>
+        <div className='h-3/6 w-full flex flex-row justify-between items-center'>
+          <div className='w-3/6 h-full  '>
+        <Line  data={data} width={2} height={5} objectFit="contain" options={{maintainAspectRatio: false}}/>
+        </div>
+        <div>
+        <Doughnut data={datas}/>
+        </div>
+        </div>
+      </div>
+      <div className='basis-[20%]'>
+       
+      </div>
     </div>
   )
 }

@@ -10,7 +10,7 @@ const provider = new GoogleAuthProvider()
 const githubProvider = new GithubAuthProvider()
 const register = async(email,password)=>{
     const response = await createUserWithEmailAndPassword(auth,email,password)
-    const data = response.user
+    const data = response.user 
    
 }
 const Login =async(email,password)=>{

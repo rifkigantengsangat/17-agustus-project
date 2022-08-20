@@ -22,7 +22,6 @@ const Home = () => {
  const handleLogout = ()=>{
   logout()
   navigate('/')
-  Cookies.destroy()
  }
  const gotoQuestion = ( id) =>{
   navigate(`/question/${id}`)
@@ -43,6 +42,7 @@ const Home = () => {
           <h1 className='font-bold font-Montserrat text-sm'>Question</h1>
         </div>
        </div>
+      
        <div className='flex justify-start px-10 items-center bg-gray-200 py-2 shadow-lg w-52 rounded-lg mx-auto my-4'>
         <div>
           <h1><MdOutlineDashboard/></h1>
@@ -51,14 +51,24 @@ const Home = () => {
           <Link to='/history' className='font-bold font-Montserrat text-sm'>History</Link>
         </div>
        </div>
-       <div className='flex justify-start px-10 items-center bg-gray-200 py-2 shadow-lg w-52 rounded-lg mx-auto my-4'>
+       {user?.uid === import.meta.env.VITE_ID_ADMIN ?   <div className='flex justify-start px-10 items-center bg-gray-200 py-2 shadow-lg w-52 rounded-lg mx-auto my-4'>
         <div>
           <h1><MdOutlineDashboard/></h1>
         </div>
+        
+        <div className='ml-4'>
+          <Link to='/dashboard'className='font-bold font-Montserrat text-sm'>Dashboard</Link>
+        </div>
+       </div>   :  <div className='hidden  bg-gray-200 py-2 shadow-lg w-52 rounded-lg mx-auto my-4'>
+        <div>
+          <h1><MdOutlineDashboard/></h1>
+        </div>
+        
         <div className='ml-4'>
           <h1 className='font-bold font-Montserrat text-sm'>Dashboard</h1>
         </div>
-       </div>
+       </div> }
+     
        <div className='flex justify-start px-10 items-center bg-gray-200 py-2 shadow-lg w-52 rounded-lg mx-auto my-4'>
         <div>
           <h1><MdOutlineDashboard/></h1>

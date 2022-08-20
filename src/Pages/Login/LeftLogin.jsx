@@ -28,7 +28,7 @@ const LeftLogin = () => {
 }
 const loginGithub = ()=>{
   sigInWithGithub()
-navigate('/dashboard')
+navigate('/home')
 }
   return (
     <div className='basis-1/2 bg-[#F5F5F5] '>
