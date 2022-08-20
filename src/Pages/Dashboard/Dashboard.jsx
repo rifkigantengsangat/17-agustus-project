@@ -19,12 +19,7 @@ const Dashboard = () => {
         backgroundColor: "rgba(75,192,192,0.2)",
         borderColor: "rgba(75,192,192,1)"
       },
-      {
-        label: "Second dataset",
-        data: [33, 25, 35, 51, 54, 76],
-        fill: false,
-        borderColor: "#742774"
-      }
+     
     ]
   };
   const datas = {
@@ -89,7 +84,7 @@ const Dashboard = () => {
         </div>
         <div className='h-3/6 w-full flex flex-row justify-between items-center'>
           <div className='w-3/6 h-full  '>
-        <Line  data={data} width={2} height={5} objectFit="contain" options={{maintainAspectRatio: false}}/>
+        <Line  data={data} width={2} height={5} objectfit="contain" options={{maintainAspectRatio: false}}/>
         </div>
         <div>
         <Doughnut data={datas}/>

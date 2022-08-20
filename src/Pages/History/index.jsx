@@ -12,11 +12,12 @@ const History = () => {
   return (
     <div>
       <button onClick={()=> navigate('/home')}>Back To Home</button>
-      {nilaiUser.length >1 ?nilaiUser?.map((e,index)=>{
+      {nilaiUser.length>0  ?nilaiUser?.map((e,index)=>{
       return (
         <div key={index}>
           <h1>{e.pelajaran}</h1>
           <h1>{e.email}</h1>
+          <h1>{e.poin}</h1>
         </div>
       )
       }) : <>Kosong Mang</>}

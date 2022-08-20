@@ -5,7 +5,6 @@ const DataContext = createContext()
 export const DataContextProvider = ({children}) =>{
     const [data,setData] = useState([])
     const [jumlahSubmit,setJumlahSubmit] = useState([])
-    const [hasilNilai,setHasilNilai] = useState([])
     const [nilaiUser,setNilaiUser] = useState([])
  const dataGet =async (paramsId)=>{
     const query = await getDocs(collection(db,paramsId))
@@ -21,6 +20,7 @@ export const DataContextProvider = ({children}) =>{
       const datas = query.data()
        if(datas?.idUser ===id){
         result.push(datas)
+        console.log(result);
        }
        return result
     }
@@ -37,7 +37,7 @@ export const DataContextProvider = ({children}) =>{
     return result
    }
     return (
-        <DataContext.Provider value={{data,dataGet,spesificDataById,hasilNilai,nilaiUser,jumlahSubmit,getValueSubmit}} >
+        <DataContext.Provider value={{data,dataGet,spesificDataById,nilaiUser,jumlahSubmit,getValueSubmit}} >
             {children}
         </DataContext.Provider>
     )

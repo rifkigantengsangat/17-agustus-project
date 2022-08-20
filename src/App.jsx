@@ -7,13 +7,15 @@ import Dashboard from './Pages/Dashboard/Dashboard'
 import Home from './Pages/Home'
 import Question from './Pages/Question'
 import History from './Pages/History'
+import DashboardUser from './Pages/DashboardUser/DashboardUser'
 function App() {
   return (
   <>
   <Routes>
     <Route path="/" element={<Login/>}/>
     <Route path='/register' element={<Register/>}/>
-    <Route path='dashboard' element={<Dashboard/>}/>
+    <Route path='Dashboard' element={<Dashboard/>}/>
+    <Route path='dashboard/:id' element={<DashboardUser/>}/>
     <Route path='home' element={<Home/>}/>
     <Route path='/question/:questionID' element={<Question/>}/>
     <Route path='/history' element={<History/>}/>

@@ -57,7 +57,7 @@ const Home = () => {
         </div>
         
         <div className='ml-4'>
-          <Link to='/dashboard'className='font-bold font-Montserrat text-sm'>Dashboard</Link>
+          <Link to='/Dashboard'className='font-bold font-Montserrat text-sm'>Dashboard</Link>
         </div>
        </div>   :  <div className='hidden  bg-gray-200 py-2 shadow-lg w-52 rounded-lg mx-auto my-4'>
         <div>
@@ -74,7 +74,7 @@ const Home = () => {
           <h1><MdOutlineDashboard/></h1>
         </div>
         <div className='ml-4'>
-          <h1 className='font-bold font-Montserrat text-sm'>Dashboard</h1>
+          <Link to={`/dashboard/${user?.uid}`} className='font-bold font-Montserrat text-sm'>Dashboard</Link>
         </div>
        </div>
     </div>
