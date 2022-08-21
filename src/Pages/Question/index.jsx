@@ -95,7 +95,8 @@ const formatDate = date.toLocaleDateString('en-US');
       email : user.email,
       poin : poin,
       pelajaran : questionID,
-      waktu : formatDate
+      waktu : formatDate,
+      submit :true,
     })
        setTimeout(() => {
         navigate('/home')

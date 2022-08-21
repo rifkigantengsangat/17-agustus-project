@@ -2,8 +2,10 @@ import React,{useState,useEffect} from 'react'
 import googleIcon from '../../Assets/google.svg'
 import GithubIcon from '../../Assets/GithubIcon.png'
 import {User} from '../../Context/UserAuth'
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
+
 const RightRegister = () => {
+    const navigate = useNavigate()
     const {register,user,signInWithGoogle,signInWithGithub,logout} = User()
     const [form,setForm] = useState({
         username:'',
@@ -19,6 +21,7 @@ const RightRegister = () => {
     const handleSubmit = async (e)=>{
         e.preventDefault()
         register(form.email,form.password)
+        navigate('/')
     }
     const loginGoogle = ()=>{
         signInWithGoogle()

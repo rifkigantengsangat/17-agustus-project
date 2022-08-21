@@ -20,12 +20,12 @@ export const DataContextProvider = ({children}) =>{
       const datas = query.data()
        if(datas?.idUser ===id){
         result.push(datas)
-        console.log(result);
+        setNilaiUser(result);
        }
        return result
     }
     )
-    setNilaiUser(result)
+   
   }
    const getValueSubmit =async  ()=>{
     let result = []
@@ -35,6 +35,9 @@ export const DataContextProvider = ({children}) =>{
     })
     setJumlahSubmit(result)
     return result
+   }
+   const getLengthUser = ()=>{
+    
    }
     return (
         <DataContext.Provider value={{data,dataGet,spesificDataById,nilaiUser,jumlahSubmit,getValueSubmit}} >

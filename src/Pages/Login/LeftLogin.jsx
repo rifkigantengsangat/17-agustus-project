@@ -48,13 +48,13 @@ navigate('/home')
                 <label className='font-medium text-sm'>Email</label>
             </div>
             <div>
-                <input className='w-96 border-4 border-[#002B5B] px-2 py-2 rounded-xl' onChange={handleFormChange} name='email' />
+                <input className='w-96 border-4 border-[#002B5B] px-2 py-2 rounded-xl' onChange={handleFormChange} name='email' required />
             </div>
             <div className='mb-2 mt-4'>
                 <label className='font-medium text-sm text-left'>Password</label>
             </div>
             <div>
-                <input type='password' className='w-96 border-4 border-[#002B5B] px-2 py-2 rounded-xl' onChange={handleFormChange} name='password' />
+                <input type='password' className='w-96 border-4 border-[#002B5B] px-2 py-2 rounded-xl' onChange={handleFormChange} name='password' required />
             </div>
             <div className='mb-2 mt-6'>
                 <button className='shadow-lg bg-[#002b5b] block w-96 px-3 py-3 rounded-xl text-white font-bold text-md'>Login</button>
