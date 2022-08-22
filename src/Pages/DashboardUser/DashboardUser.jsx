@@ -5,6 +5,7 @@ import {User} from '../../Context/UserAuth'
 import { Line,Doughnut } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import {Link} from 'react-router-dom'
+import Modal from './Modal';
 import {
   Chart as ChartJS,
   registerables,
@@ -13,40 +14,59 @@ const DashboardUser = () => {
     const {nilaiUser,spesificDataById} = Data()
     const [name,setName] = useState('')
     const [jumlahSubmitUser,setJumlahSubmitUser] = useState([])
+    const [nilaiTertinggi,setNilaiTinggi] = useState([])
     const [nilaiRata,setNilaiRata] = useState(0)
+    const [nilaiRemedial,setNilaiRemedial] = useState([]) 
+    const [open,setOpen] = useState(false)
     const {user} = User()
     const data = {
-        labels: ["10", "20", "30", "40", "50", "60","70", "80", "90", "100"],
-        datasets: [
-          {
-            label : 'Nilai Anda',
-            
-            fill: true,
-            backgroundColor: "rgba(75,192,192,0.2)",
-            borderColor: "rgba(75,192,192,1)"
-          },
-         
-        ]
-      };
+      labels: ["Jan"],
+      datasets: [
+        {
+          label: "Jumlah Submit",
+          data: [ nilaiTertinggi?.[0],nilaiTertinggi?.[1]],
+          fill: true,
+          backgroundColor: "rgba(75,192,192,0.2)",
+          borderColor: "rgba(75,192,192,1)"
+        },
+       
+      ]
+    };
+  
        useEffect(()=>{
         spesificDataById(user?.uid) 
         let result = []
+        let result2 = []
+        let poins = []
         nilaiUser?.map((x)=> {
-          const poin = x.poin
-           result.push(poin)
-           setJumlahSubmitUser(x.submit)
-           const average = result?.reduce((a,b)=>{
+           result.push(x)
+           const poin = x.poin
+           poins.push(poin)
+           result2.push(x.submit);
+           setJumlahSubmitUser(result2);
+           const filterRemed = result.filter((x)=> x.poin < 75)
+           setNilaiRemedial(filterRemed)
+           const average = poins?.reduce((a,b)=>{
             return  a+b
              },0)/result?.length
              setNilaiRata(average)
-          return result
+          return [result,result2,poins]
+         
         })
         const SplitName = user?.email?.split('@')
          const names = SplitName?.[0]
          setName(names)
-       },[user,nilaiUser])
+         const nilaiTertinggi = poins?.sort((a,b)=>a-b)[poins.length - 1];
+         const nilaiTerendah = poins?.sort((a,b)=>a+b)?.[0]
+       console.log(nilaiTerendah);
+         console.log(nilaiTertinggi);
+         console.log(nilaiTerendah,nilaiTertinggi);
+         const nilaiTinggiDanPendek = [nilaiTertinggi,nilaiTerendah]
+          setNilaiTinggi(nilaiTinggiDanPendek)
+       },[user])
     return (
-    <div className='w-screen h-screen'>
+      <>
+    <div className={`w-screen h-screen ${open? 'blur-sm' : 'blur-none'}`  }>
      <div className='w-full h-24 bg-gray-200 flex justify-center items-center '>
       <div className='w-5/6 mx-auto h-3/5 flex justify-between items-center'>
         <div>
@@ -77,16 +97,32 @@ const DashboardUser = () => {
         <h1 className='font-bold font-Montserrat tex-md pt-2 text-white'>{nilaiRata}</h1>
      
       </div>
-      <div className='w-96 bg-gray-200 h-4/5 rounded-lg '>
+      <div className='w-96 bg-gray-200 h-4/5 rounded-lg flex flex-col items-center justify-center '>
      
-      <h1 className='font-bold font-Montserrat text-lg text-white'>Jumlah Submit Quiz </h1>
-        <h1 className='font-bold font-Montserrat tex-md pt-2 text-white'>{}</h1>
+      <h1 className='font-bold font-Montserrat text-lg text-black'>Jumlah Submit Quiz </h1>
+        <h1 className='font-bold font-Montserrat tex-md pt-2 text-black'>{jumlahSubmitUser.length}</h1>
       </div>
-      <div className='w-96 bg-gray-200 rounded-lg h-4/5  '>
-      <h1>Ok</h1>
-      </div>
+      <div className='w-96 bg-black rounded-lg h-4/5 flex flex-col items-center justify-center'>
+      <h1 className='font-bold font-Montserrat text-lg text-white'>Jumlah Nilai Remedial </h1>
+        <h1 className='font-bold font-Montserrat tex-md pt-2 text-white'>{nilaiRemedial.length}</h1>
+        <div className='w-full relative'>
+        <button className='bg-white block w-3/5 mx-auto absolute -bottom-20 left-[20%] rounded-lg py-1 ' onClick={()=>{setOpen(true)}}>Lihat Remedial</button>
+ 
+        </div>
+             </div>
+   
      </div>
+    
     </div>
+    <div>
+    {open&&<Modal setOpen={setOpen} open={open} nilai={nilaiRemedial}/>}
+    </div>
+    <div className='w-full h-64'>
+      <div className='w-3/5 mx-auto h-full bg-black '>
+      <Line data={data} width={2} height={5} objectfit="contain" options={{maintainAspectRatio: false}}/>
+      </div>
+    </div>
+    </>
   )
 }
 
